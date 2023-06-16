@@ -1,0 +1,194 @@
+{% extends "pages/base.twig" %}
+{% block title %}Электронный журнал - Студент{% endblock %}
+{% block css %} {% endblock %}
+{% block breadcrumb %}
+<li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']">Электронный журнал</li>
+{% endblock %}
+{% block current_title %} Электронный журнал{% endblock %}
+{% block jurnal %}
+
+<div id="EumoDialog" class="dialog" style="display:none">
+    <h1>
+        ЭУМО 
+        <div class="btn-close">&#xD7;</div>
+    </h1>
+    <div style="height: calc(600px - 70px); overflow-y: scroll;" class="dialog-content">
+        <table id="TblFiles" class="tbl-files" style="width: 100%">
+            <tr>
+                <!--<th>#</th>-->
+                <th>Неделя</th>
+                <th>Преподаватель</th>
+                <th>Материал</th>
+                <th>Загрузить задание</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="flex flex-wrap -mx-3">
+    <div class="flex-none w-full max-w-full px-3">
+        <div
+            class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            <div class="p-6 pb-0 mb-0 border-0 border-solid rounded-t-2xl border-transparent">
+                <h6 class="dark:text-white">2022 - 2023 учебный год</h6>
+            </div>
+            <div class="p-6 pt-1 pb-0 mb-0 border-0 border-solid rounded-t-2xl border-transparent">
+                <h6 class="dark:text-white">Текущая неделя:  <span id="CurWeek">{{curWeek}}</span>{{nedelya_name}}</h6>
+            </div>
+
+            <div alert="" class="relative ml-2 mr-2 p-2 pr-12 mb-4 text-white border border-blue-300 border-solid rounded-lg bg-gradient-to-tl from-blue-500 to-violet-500 alert-text">
+               Құрметті білімгерлер! Сауалнама университетіміздегі білім беру бағдарламаларының және оқытылатын пәндердің сапасын арттыруға бағытталған және толық анонимді түрде жүргізіледі. Сіздің пікіріңіз біз үшін өте маңызды. Университеттегі білім сапасын бірге арттырайық. Құрметпен, Сапаны қамтамасыз ету комиссиясы. 
+                <a href="#" class="font-semibold text-amber-500">Анкетирование</a>.
+            </div>
+
+            <div class="p-3">
+                <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                    <li class="mr-2">
+                        <a href="#" id="CurControl" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 journal-tab journal-active-tab">Текущий контроль</a>
+                    </li>
+                    <li class="mr-2">
+                        <a href="#" id="Rating1" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 journal-tab ">Рейтинг допуска 1</a>
+                    </li>
+                    <li class="mr-2">
+                        <a href="#" id="Rating2" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 journal-tab ">Рейтинг допуска 2</a>
+                    </li>
+                    <li class="mr-2">
+                        <a href="#" id="Itog" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 journal-tab ">Итог</a>
+                    </li>
+                    <li class="mr-2">
+                        <a href="#" id="Rasp" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 journal-tab">Расписание</a>
+                    </li>
+                    <li class="mr-2">
+                        <a href="#" id="Iup" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 journal-tab">ИУП</a>
+                    </li>
+                    <li class="mr-2">
+                        <a href="#" id="Trans" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 journal-tab">Транскрипт</a>
+                    </li>
+                    <li class="mr-2">
+                        <a href="#" id="Reg" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 journal-tab">Регистрация</a>
+                    </li>
+                    <li class="mr-2">
+                        <a href="#" id="Summer" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 journal-tab">Академ. задолженность</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="journal">
+                <div class="table-wrapper">
+                    <div id="iup_div" style="max-width: 1105px;"><hr>
+
+                    </div>
+            
+                    <table id="StudentTable" class="journal-table">
+                        
+                    </table>
+                    <table id="GraficTable" class="journal-table">
+                        
+                    </table>
+                    <div id="iup_div_f">
+
+                    </div>
+                </div>
+            </div>
+
+            {# ITOG TABLE 
+            <div class="flex-auto px-0 pt-0 pb-2 mb-2">
+                <div class="p-3 overflow-x-auto">
+                    <table 
+                        class="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500">
+                        <thead class="align-bottom">
+                            <tr>
+                                <th
+                                    class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-solid tracking-none whitespace-nowrap text-black opacity-70">
+                                    Дисциплина</th>
+                                <th
+                                    class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-solid tracking-none whitespace-nowrap text-black opacity-70">
+                                    ЭУМО</th>
+                                <th
+                                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-solid tracking-none whitespace-nowrap text-black opacity-70">
+                                    R1</th>
+                                <th
+                                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-solid tracking-none whitespace-nowrap text-black opacity-70">
+                                    R2
+                                </th>
+                                <th
+                                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-solid tracking-none whitespace-nowrap text-black opacity-70">
+                                    Рейтинг
+                                </th>
+                                <th
+                                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-solid tracking-none whitespace-nowrap text-black opacity-70">
+                                    Экзамен
+                                </th>
+                                <th
+                                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-solid tracking-none whitespace-nowrap text-black opacity-70">
+                                    Апеляция
+                                </th>
+                                <th
+                                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-solid tracking-none whitespace-nowrap text-black opacity-70">
+                                    Общий балл
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                                <td
+                                    class="p-2 align-middle bg-transparent border dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                    <a href="#"
+                                        class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-black">
+                                        Edit </a>
+                                </td>
+                                 <td
+                                    class="p-2 align-middle bg-transparent border dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                    <a href="#"
+                                        class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-black">
+                                        Edit </a>
+                                </td>
+                                 <td
+                                    class="p-2 align-middle bg-transparent border dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                    <a href="#"
+                                        class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-black">
+                                        Edit </a>
+                                </td>
+                                 <td
+                                    class="p-2 align-middle bg-transparent border dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                    <a href="#"
+                                        class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-black">
+                                        Edit </a>
+                                </td>
+                                 <td
+                                    class="p-2 align-middle bg-transparent border dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                    <a href="#"
+                                        class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-black">
+                                        Edit </a>
+                                </td>
+                                 <td
+                                    class="p-2 align-middle bg-transparent border dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                    <a href="#"
+                                        class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-black">
+                                        Edit </a>
+                                </td>
+                                 <td
+                                    class="p-2 align-middle bg-transparent border dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                    <a href="#"
+                                        class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-black">
+                                        Edit </a>
+                                </td>
+                                 <td
+                                    class="p-2 align-middle bg-transparent border dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                    <a href="#"
+                                        class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-black">
+                                        Edit </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            ITOG TABLE #}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}<script src="/js/jurnal.js"></script>{% endblock %}

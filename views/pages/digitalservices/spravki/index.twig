@@ -1,0 +1,25 @@
+{% extends "pages/base.twig" %}
+{% block title %}Справки - Студент{% endblock %}
+{% block css %} {% endblock %}
+{% block breadcrumb %}
+<li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']">Справки </li>
+{% endblock %}
+{% block current_title %} Справки {% endblock %}
+{% block jurnal %}
+<div class="relative flex flex-col flex-auto min-w-0 p-4 mx-2 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
+    <div class="p-2 pb-0 mb-0 border-0 border-solid rounded-t-2xl border-transparent">
+        <h6 class="dark:text-white">Виды справок</h6>
+    </div>
+    <ul  class="spravochnik-list">
+        <a href="/services/spravki/oneclick"><li class="text-black border-slate-200 cursor-pointer border-2 p-3 rounded-2xl mb-2">Справка с места учебы</li></a>
+        <a href="/oplata"><li class="text-black border-slate-200 cursor-pointer border-2 p-3 rounded-2xl mb-2">Справка с места учебы (с указанием суммы оплаты за год обучения)</li></a>
+        <a href="/gcvp"><li class="text-black border-slate-200 cursor-pointer border-2 p-3 rounded-2xl mb-2">Получить справку в выплатной центр (ГЦВП) для пособий</li></a>
+        <a href="/voen"><li class="text-black border-slate-200 cursor-pointer border-2 p-3 rounded-2xl mb-2">Справка с места учебы в Военкомат</li></a>
+        <a href="/napravlenie"><li class="text-black border-slate-200 cursor-pointer border-2 p-3 rounded-2xl mb-2">Направление для заселения в «Общежитие»</li></a>
+        <a href="/spravka-vyzov"><li class="text-black border-slate-200 cursor-pointer border-2 p-3 rounded-2xl mb-2">Справка-вызов</li></a>
+        {# <a href="/oneclick"><li class="text-black border-slate-200 cursor-pointer border-2 p-3 rounded-2xl mb-2">Справка</li></a> #}
+    </ul>
+</div>
+{% endblock %}
+
+{% block js %}<script src="/js/jurnal.js"></script>{% endblock %}

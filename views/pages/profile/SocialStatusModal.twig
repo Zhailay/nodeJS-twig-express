@@ -1,0 +1,61 @@
+<input class="modal-state" id="modal-2" type="checkbox" />
+<div class="modal">
+  <label class="modal__bg" for="modal-2"></label>
+  <div class="backdrop-blur-2xl modal__inner backdrop-saturate-200 bg-white/80 duration-200 ease shadow-3xl">
+    <label class="modal__close" for="modal-2"></label>
+    <h4>Әлеуметтік статус </h4>
+    <div>
+        <div class="mb-2">
+        <label for="fio"
+                class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">{{info.otdelenie_id == 2 ? 'Жетім':'Сирота'}}</label>
+          <input 
+            type="text" 
+            name="fio" 
+            id="fio"
+            value="{{student_info.otec_fio}}"
+            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" 
+            >
+        </div>
+        <div class="mb-2">
+        <label for="telephone"
+                class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Телефон</label>
+          <input 
+            type="text" 
+            name="telephone" 
+            id="telephone"
+            value="{{student_info.otec_telephone}}"
+            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" 
+            >
+        </div>
+        <div class="mb-2">
+        <label for="adress"
+                class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Тұрғын үй мекен-жайы</label>
+          <input 
+            type="text" 
+            name="adress" 
+            id="adress"
+            value="{{student_info.otec_adress}}"
+            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" 
+            >
+        </div>
+        <div class="mb-4">
+        <label for="mesto_raboty"
+                class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Жұмыс орны</label>
+          <input 
+            type="text" 
+            name="mesto_raboty" 
+            id="mesto_raboty"
+            value="{{student_info.otec_mesto_raboty}}"
+            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" 
+            >
+        </div>
+        <button 
+          type="button" 
+          class="px-4 py-2 mb-4 ml-1 font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-emerald-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85"
+          id="save-otec"
+          >
+                        Сақтау
+        </button>
+    </div>
+  </div>
+</div>

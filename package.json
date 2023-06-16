@@ -1,0 +1,26 @@
+{
+  "name": "studentspersonalcab",
+  "version": "1.0.0",
+  "description": "Zhetysu university students account",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "personal",
+    "account",
+    "ZU"
+  ],
+  "author": "Yerassyl Zhailau",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "fs": "^0.0.1-security",
+    "mssql": "^9.1.1",
+    "nodemon": "^2.0.22",
+    "twig": "^1.16.0"
+  }
+}

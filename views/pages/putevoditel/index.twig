@@ -1,0 +1,26 @@
+{% extends "pages/base.twig" %}
+{% block title %}Справочник путеводитель - Студент{% endblock %}
+{% block css %} {% endblock %}
+{% block breadcrumb %}
+<li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']">Справочник путеводитель </li>
+{% endblock %}
+{% block current_title %} Справочник путеводитель{% endblock %}
+{% block jurnal %}
+<div class="relative flex flex-col flex-auto min-w-0 p-4 mx-2 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
+    <ul class="spravochnik-list">
+        <a href="/putevoditel/officereg"><li class="text-black border-slate-200 text-sm text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">ОФИС РЕГИСТРАТОРА</li></a>
+        <li class="text-black border-slate-200 text-sm text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">ЦЕНТР ОБСЛУЖИВАНИЯ ОБУЧАЮЩИХСЯ (ЦОО)</li>
+        <li class="text-black border-slate-200 text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">ОБЩЕЖИТИЕ</li>
+        <li class="text-black border-slate-200 text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">МЕЖДУНАРОДНЫЙ ЦЕНТР ЕВРОПЕЙСКОГО СОТРУДНИЧЕСТВА</li>
+        <li class="text-black border-slate-200 text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">БИБЛИОТЕКА ИМЕНИ Ғ. ОРМАНОВА</li>
+        <li class="text-black border-slate-200 text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">МЕДИЦИНСКИЙ СЕРВИС</li>
+        <li class="text-black border-slate-200 text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">ВОЕННАЯ КАФЕДРА</li>
+        <li class="text-black border-slate-200 text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">СПОРТИВНАЯ ЖИЗНЬ</li>
+        <li class="text-black border-slate-200 text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">СТУДЕНЧЕСКИЕ КЛУБЫ  И  СООБЩЕСТВА</li>
+        <li class="text-black border-slate-200 text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">МУЗЕЙ</li>
+        <li class="text-black border-slate-200 text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">STARTUP</li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block js %}<script src="/js/jurnal.js"></script>{% endblock %}

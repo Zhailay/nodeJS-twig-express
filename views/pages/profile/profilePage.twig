@@ -1,0 +1,180 @@
+{% extends "pages/base.twig" %}
+{% block title %}Профиль - Студент{% endblock %}
+{% block css %} 
+<link rel="stylesheet" href="/css/modal.css"/>
+{% endblock %}
+{% block breadcrumb %}
+<li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']">Профиль</li>
+{% endblock %}
+{% block current_title %} Профиль {% endblock %}
+
+{% block jurnal %}
+<div class="relative flex flex-col flex-auto min-w-0 p-4 mx-2 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
+    <div class="flex flex-wrap -mx-3">
+        <div class="flex-none w-auto max-w-full px-3">
+            <div
+                class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
+                <img src="../assets/img/team-1.jpg" alt="profile_image" class="w-full shadow-2xl rounded-xl">
+            </div>
+        </div>
+        <div class="flex-none w-auto max-w-full px-3 my-auto">
+            <div class="h-full">
+                <h5 class="mb-1 dark:text-white">{{fio}}</h5>
+                <p class="mb-0 font-semibold leading-normal dark:text-white dark:opacity-60 text-sm">{{student_info.gruppa_name}}
+                </p>
+            </div>
+        </div>
+        <div class="w-full max-w-full px-3 mx-auto mt-4 sm:my-auto sm:mr-0 md:w-1/2 md:flex-none lg:w-4/12">
+            <div class="relative right-0">
+                 <button type="button"
+                    class=" px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-green-700 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Подтвердить профиль</button>
+                     <button type="button"
+                    class=" px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Изменить пароль</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="w-full max-w-full px-3 md:flex-0 mt-4 relative p-4 pr-12 mb-4 text-white border border-red-300 border-solid rounded-lg bg-gradient-to-tl from-red-600 to-orange-600 mx-2">
+        {% if info.student_flag_value is defined and info.student_flag_value is not null %}
+    {% else %}
+    {{info.otdelenie_id == 2 ? 'СІЗ ӨЗІҢІЗДІҢ ДЕРБЕС ДЕРЕКТЕРІҢІЗДІ РАСТАМАЙЫНША, ЖЕКЕ КАБИНЕТТІ ПАЙДАЛАНА АЛМАЙСЫЗ!':'ПОКА ВЫ НЕ ПОДТВЕРДИТЕ СВОИ ПЕРСОНАЛЬНЫЕ ДАННЫЕ, ВЫ НЕ СМОЖЕТЕ ВОСПОЛЬЗОВАТЬСЯ ЛИЧНЫМ КАБИНЕТОМ!'}}
+    <br>
+    {% endif %}
+    <b>{{info.otdelenie_id == 2 ? 'Еңгізілген деректердің нақтылығына тікелей білімгер жауап береді!':'Достоверность за внесенные данные несет непосредственно обучающийся!'}}</b>
+</div>
+
+<div class="w-full max-w-full px-3 md:flex-0 mt-4">
+    <div
+        class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+        <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
+            <div class="items-center">
+                <p class="mb-0 dark:text-white/80">Редактирование профиля</p>
+            </div>
+        </div>
+        <div class="flex-auto p-6">
+            {# <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Жеке деректер</p> #}
+            <div class="relative p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
+                <div class="flex flex-col">
+                <h6 class="mb-4 text-sm leading-normal dark:text-white">Жеке деректер</h6>
+                    <span class="mb-2 text-base leading-tight dark:text-white/80">ФИО: 
+                        <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{fio}}</span>
+                    </span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">ИИН: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.student_iin}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Туылған күні: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.student_data_rojdeniya}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Отбасы жағдайы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.student_semeinoe_polojenie}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Жынысы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.student_pol}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Ұлты: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.student_nacionalnost}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Азаматтық: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.student_grajdanstvo}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Адрес: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.student_adress}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Телефон нөмірі: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.student_telephone}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Почта: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.student_pochta}}</span></span>
+                </div>
+                <div class="inline-flex ml-auto mt-2">
+                    <button type="button"
+                        class="px-4 py-2 mb-4 ml-1 font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">
+                        Изменить личные данные
+                    </button>
+                    <button type="button"
+                        class=" px-4 py-2 mb-4 ml-1 font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">
+                        Изменить адрес
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
+                <div class="flex flex-col">
+                <h6 class="mb-4 text-sm leading-normal dark:text-white">Қазіргі білімі туралы ақпарат</h6>
+                    <span class="mb-2 text-base leading-tight dark:text-white/80">Оқу формасы: 
+                        <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.shablon_kontingent_name}}</span>
+                    </span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Білім беру бағдарламасы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.spec_name}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Курс: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.kurs_nomer}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Тобы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.gruppa_name}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Оқу тілі: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.otdelenie_name}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Оқыту негізі: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.osnova_obucheniya}}</span></span>
+                </div>
+            </div>
+
+            <div class="relative p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
+                <div class="flex flex-col">
+                <h6 class="mb-4 text-sm leading-normal dark:text-white">Әлеуметтік статус</h6>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Жетім: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.sirota_status}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Толық емес отбасы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.polusirota_status}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Мүгедек: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.invalid_status}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Диагноз: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.invalid_status_value}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Ата-анасының қамқорлығынсыз қалған бала: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.rebenok_ostav_bez_popech}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Мүгедек балаларды тәрбиелеп отырған отбасынан шыққан бала: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.rebenok_iz_semy_vosp_invalid}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Мүгедек ата-ананың баласы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.rebenok_roditelya_invalid}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Көп балалы отбасы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.mnogodetnoi_semiy_status}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Тұрмысы төмен отбасы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.maloimush_semiy_status}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Растау файлы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.soc_status_file}}</span></span>
+                </div>
+                <div class="inline-flex ml-auto">
+                    <button type="button"
+                        class="px-4 py-2 mb-4 ml-1 font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">
+                        Әлеуметтік мәртебені өңдеу
+                    </button>
+                    <button type="button"
+                        class=" px-4 py-2 mb-4 ml-1 font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">
+                        Растау файлын жүктеу
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
+                <div class="flex flex-col">
+                <h6 class="mb-4 text-sm leading-normal dark:text-white">Әкесі</h6>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Аты-жөні: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.otec_fio}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Телефон: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.otec_telephone}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Тұрғын үй мекен-жайы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.otec_adress}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Жұмыс орны: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.otec_mesto_raboty}}</span></span>
+
+                </div>
+                <div class="inline-flex ml-auto">
+                    <label class="px-4 py-2 mb-4 ml-1 font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85" for="modal-2">Әкесі туралы ақпаратты өңдеу</label>
+                </div>
+            </div>
+
+            <div class="relative p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
+                <div class="flex flex-col">
+                <h6 class="mb-4 text-sm leading-normal dark:text-white">Мать</h6>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Аты-жөні: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.mat_fio}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Телефон: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.mat_telephone}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Тұрғын үй мекен-жайы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.mat_adress}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Жұмыс орны: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.mat_mesto_raboty}}</span></span>
+
+                </div>
+                <div class="inline-flex ml-auto">
+                    <label class="px-4 py-2 mb-4 ml-1 font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85" for="modal-3">Анасы туралы ақпаратты өңдеу</label>
+                </div>
+            </div>
+
+            <div class="relative p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50 dark:bg-slate-850">
+                <div class="flex flex-col">
+                <h6 class="mb-4 text-sm leading-normal dark:text-white">Қамқоршы</h6>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Аты-жөні: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.opekun_fio}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Телефон: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.opekun_telephone}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Тұрғын үй мекен-жайы: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.opekun_adress}}</span></span>
+                <span class="mb-2 text-base leading-tight dark:text-white/80">Жұмыс орны: <span class="font-semibold text-slate-700 dark:text-white sm:ml-2">{{student_info.opekun_mesto_raboty}}</span></span>
+
+                </div>
+                <div class="inline-flex ml-auto">
+                    <label class="px-4 py-2 mb-4 ml-1 font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85" for="modal-4">Қамқоршы туралы ақпаратты өңдеу</label>
+                </div>
+            </div>
+
+
+            {% include "/pages/profile/otecModal.twig" %}
+            {% include "/pages/profile/matModal.twig" %}
+            {% include "/pages/profile/opekunModal.twig" %}
+            {# Отец / #}
+
+            <div id="editor"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/profile.js"></script>{% endblock %}

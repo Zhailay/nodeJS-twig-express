@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Справка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            height: 842px;
+            width: 595px;
+            /* to centre page on screen*/
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        .left-picture {
+            float: left;
+            width: 80px;
+            height: 100px;
+        }
+
+        .right-picture {
+            float: inherit;
+            margin-left: 70%;
+            width: 130px;
+            height: 130px;
+        }
+
+        .header-picture {
+            float: right;
+            width: 80px;
+            height: 80px;
+            margin-top: -105px;
+            margin-right: 45px;
+        }
+
+        h4 {
+            font-size: 16px;
+        }
+
+        .padding {
+            margin-top: 150px;
+            margin-left: 40%;
+        }
+
+        .wrap {
+            margin-bottom: 20px;
+        }
+
+        .desc_info {
+            font-size: 10px;
+        }
+        html{
+
+font-family: 'Oswald', sans-serif;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    {% for info in spravka %}
+
+    {% if info.student_fio == '' %}
+    <p>У вас нету доступа</p>
+    {% else %}
+        <div>
+            <img class="left-picture" src="/img/eservice/logo.png" alt="logo" srcset="">
+            <h4 style="padding: 20px; margin-left: 100px; font-size:14px;margin-right: 85px;">І.ЖАНСҮГІРОВ АТЫНДАҒЫ ЖЕТІСУ УНИВЕРСИТЕТІ
+                БІЛІМГЕРЛЕРГЕ ҚЫЗМЕТ КӨРСЕТУ ОРТАЛЫҒЫ</h4>
+            <div id="qrcode" class="header-picture"></div>
+        </div>
+    {% if info.spravka_flag == 2 %}
+    <div id="dot">
+
+        <div class="wrap">
+            <h3 class="padding">АНЫҚТАМА</h3>
+            <p style="line-height: 1.5;">&ensp;&ensp;&ensp; {{ info.student_fio }}
+                І.Жансүгіров атындағы Жетісу университеті үздіксіз білім беру институтының
+                "{{ info.spec_name }}"
+                білім беру бағдарламасында {{ info.kurs_nomer }} курста {{ info.gruppa_name }} топта, қашықтықтан
+                оқыту технологиясы бойынша {{ info.osnova_obuch }} негізінде оқиды.</p>
+        </div>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Оқу мерзімі:{{ info.srok_obuch }} ж.</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Анықтама сұраныс орнына берілді.</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Берілген күні: {{ info.data_vydachi_spravki }}</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Ескертпе: Анықтама 10 күнге жарамды.</p>
+        <div>
+            <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;БҚКО директоры С.Мурыгина</p>
+            <img class="right-picture" src="/img/eservice/qr.png" alt="logo" srcset="">
+        </div>
+    </div>
+    {% elseif info.spravka_flag == 1 %}
+    <div id="ochnoe">
+
+        <div class="wrap">
+            <h3 class="padding">АНЫҚТАМА</h3>
+            <p style="line-height: 1.5;">&ensp;&ensp;&ensp; {{ info.student_fio }} {{ info.haracter_spec_name }} "{{
+                info.spec_name }}"
+                білім беру бағдарламасы бойынша {{ info.kurs_nomer }} курста {{ info.gruppa_name }} топта (күндізгі, {{
+                info.osnova_obuch }}) оқиды.</p>
+
+        </div>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Оқу мерзімі:{{ info.srok_obuch }} ж.</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Анықтама сұраныс орнына берілді.</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Берілген күні: {{ info.data_vydachi_spravki }}</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Ескертпе: Анықтама 10 күнге жарамды.</p>
+        <div>
+            <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;БҚКО директоры С.Мурыгина</p>
+            <img class="right-picture" src="/img/eservice/qr.png" alt="logo" srcset="">
+        </div>
+    </div>
+    {% elseif info.spravka_flag == 3 %}
+    <div id="ochnoe">
+
+        <div class="wrap">
+            <h3 class="padding">АНЫҚТАМА</h3>
+            <p style="line-height: 1.5;">&ensp;&ensp;&ensp; {{ info.student_fio }}
+                {{ info.haracter_spec_name }}
+                "{{ info.spec_name }}"
+                білім беру бағдарламасы бойынша {{ info.kurs_nomer }} курста ({{ info.osnova_obuch }}) күндізгі оқу
+                түрінде оқиды.</p>
+
+        </div>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Оқу мерзімі:{{ info.srok_obuch }} ж.</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Анықтама сұраныс орнына берілді.</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Берілген күні: {{ info.data_vydachi_spravki }}</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Ескертпе: Анықтама 10 күнге жарамды.</p>
+        <div>
+            <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;БҚКО директоры С.Мурыгина</p>
+            <img class="right-picture" src="/img/eservice/qr.png" alt="logo" srcset="">
+        </div>
+    </div>
+    {% elseif info.spravka_flag == 4 %}
+    <div id="ochnoe">
+        <div class="wrap">
+            <h3 class="padding">АНЫҚТАМА</h3>
+            <p style="line-height: 1.5;">&ensp;&ensp;&ensp; {{ info.student_fio }}
+                {{ info.haracter_spec_name }}
+                "{{ info.spec_name }}"
+                білім беру бағдарламасы бойынша {{ info.kurs_nomer }} курста ({{ info.osnova_obuch }}) күндізгі оқу
+                түрінде оқиды.</p>
+
+        </div>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Оқу мерзімі:{{ info.srok_obuch }} ж.</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Анықтама сұраныс орнына берілді.</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Берілген күні: {{ info.data_vydachi_spravki }}</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Ескертпе: Анықтама 10 күнге жарамды.</p>
+        <div>
+            <p style="font-weight: bold;">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;БҚКО директоры С.Мурыгина</p>
+            <img class="right-picture" src="/img/eservice/qr.png" alt="logo" srcset="">
+        </div>
+    </div>
+    {% endif %}
+    <hr style="    margin-top: 25%;">
+    {% include 'pages/digitalservices/spravki/description.twig' %}
+    <p class="desc_info">QR-код «І. Жансүгіров атындағы Жетісу университеті» КЕАҚ «Smart Zhetysu» сандық платформасынан
+        алынған және білімгерлерге қызмет көрсету орталығы директорының қолы қойылған деректерді қамтиды</p>
+    {% endif %}
+
+    <input type="hidden" id="spravkaid" value="{{ info.monitoring_spravka_id }}"></input>
+    <input type="hidden" id="student" value="{{id_student}}"></input>
+    <div id="editor"></div>
+    {# <input id="pdf-button" type="button" value="Распечатать / Скачать" onclick="downloadPDF()" /> #}
+    {% endfor %}
+    <script src="/js/eservice/qrcode.js"></script>
+    <script src="/js/eservice/qrcode.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/eservice/jstopdf.js"></script>
+    <script type="text/javascript">
+        var spravkaid = $("#spravkaid").val();
+        var student = $("#student").val();
+        var domain = $(location).attr('host');
+        var protocol = $(location).attr('protocol');
+        var url = `${protocol}//${domain}/spravkaqr/${student}/${spravkaid}`
+        // new QRCode(document.getElementById("qrcode"), url);
+        var qr_link = $("#qr_link")
+        qr_link.html(url)
+        var qrcode = new QRCode("qrcode", {
+            text: url,
+            width: 128,
+            height: 128,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });      
+    </script>
+    <script>
+        $(window).on("load", function () {
+            window.print();
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+{% extends "pages/base.twig" %}
+{% block title %}Офис Регистратора - Студент{% endblock %}
+{% block css %} {% endblock %}
+{% block breadcrumb %}
+<li class="text-sm pl-2 capitalize leading-normal text-white opacity-50 before:float-left before:pr-2 before:text-white before:content-['/']"><a href="/putevoditel">Справочник путеводитель </a></li>
+<li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']">Офис Регистратора</li>
+{% endblock %}
+{% block current_title %} Офис Регистратора {% endblock %}
+{% block jurnal %}
+<div class="relative flex flex-col flex-auto min-w-0 p-4 mx-2 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
+    <div class="flex flex-col md:flex-row mb-4">
+      <div class="w-full md:w-2/3 md:mr-4">
+        <h5 class="mt-1">ОФИС РЕГИСТРАТОРА</h5>
+        <ul class="list-disc ml-4">
+          <li class="mb-2"><span class="text-orange-500"><i class="fas fa-check-double"></i></span> Организация записи
+            обучающихся на учебные дисциплины</li>
+          <li class="mb-2"><span class="text-orange-500"><i class="fas fa-check-double"></i></span> Организация
+            промежуточной аттестации (экзаменационной сессии)</li>
+          <li class="mb-2"><span class="text-orange-500"><i class="fas fa-check-double"></i></span> Постоянный
+            мониторинг результатов экзаменационной сессии</li>
+          <li class="mb-2"><span class="text-orange-500"><i class="fas fa-check-double"></i></span> Присуждение
+            академических кредитов обучающимся по учебным дисциплинам и практикам</li>
+          <li class="mb-2"><span class="text-orange-500"><i class="fas fa-check-double"></i></span> Перевод обучающихся
+            с курса на курс</li>
+          <li class="mb-2"><span class="text-orange-500"><i class="fas fa-check-double"></i></span> Выдача транскриптов
+          </li>
+          <li class="mb-2"><span class="text-orange-500"><i class="fas fa-check-double"></i></span> Регистрация на
+            летний семестр</li>
+          <li class="mb-2"><span class="text-orange-500"><i class="fas fa-check-double"></i></span> Предоставление
+            обучающимся информации о пререквизитах и постреквизитах дисциплин</li>
+          <li class="flex mb-2">
+            <i class="fas fa-map-marker-alt mr-2"></i> <b>Как найти:</b> корпус № 1, каб.104а<br> телефоны: 8 7282 22 20
+            28<br> 8 7282 22 21 23 (внутр. 1132, 1190)
+          </li>
+          <li class="flex mb-2">
+            <br> <b>Подробнее на сайте:</b> <a class="text-blue-500"
+              href="http://zhetysu.edu.kz/%D0%BE%D1%84%D0%B8%D1%81-%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0/">кликните
+              сюда</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/jurnal.js"></script>{% endblock %}

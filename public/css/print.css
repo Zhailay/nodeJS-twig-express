@@ -1,0 +1,24 @@
+.printable-div {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 20mm;
+    background-color: white;
+  }
+  
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    .printable-div,
+    .printable-div * {
+      visibility: visible;
+    }
+    .printable-div {
+      position: fixed;
+      left: 0;
+      top: 0;
+      margin: 0 auto;
+      padding: 0px;
+    }
+  }

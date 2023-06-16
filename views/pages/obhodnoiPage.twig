@@ -1,0 +1,62 @@
+{% extends "pages/base.twig" %}
+{% block title %}Обходной - Студент{% endblock %}
+{% block css %} {% endblock %}
+{% block breadcrumb %}
+<li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']">Обходной</li>
+{% endblock %}
+{% block current_title %} Обходной {% endblock %}
+{% block jurnal %}
+<div
+    class="relative flex flex-col flex-auto min-w-0 p-4 mx-2 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
+    <div class="flex-auto px-0 pt-0 pb-2 mb-2">
+        <div class="p-3 overflow-x-auto">
+            <table class="mb-0 align-top border-collapse dark:border-white/40 text-black">
+                <thead>
+                    <tr>
+                        <th>Структурное подразделение</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for info in tb %}
+                    {% if info.obhodnoi_status == 'Қол қойды/подписал' %}
+                    <tr>
+                        <td
+                            class="p-2 bg-transparent border-b dark:border-white/40  shadow-transparent">
+                            <p class="mb-0 text-base font-semibold leading-tight dark:text-white dark:opacity-80">
+                                {{info.pole_name}}</p>
+                        </td>
+                        <td
+                            class="p-2 text-sm leading-normal bg-transparent border-b dark:border-white/40  shadow-transparent">
+                            <span
+                                class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap align-baseline font-bold uppercase leading-none text-white">{{info.obhodnoi_status}}</span>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td class="p-2 bg-transparent border-b dark:border-white/40  shadow-transparent">
+                            <p class="mb-0 text-base font-semibold leading-tight dark:text-white dark:opacity-80">
+                                {{info.pole_name}}</p>
+                        </td>
+                        <td class="p-2 text-sm leading-normal bg-transparent border-b dark:border-white/40  shadow-transparent">
+                            <span class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap align-baseline font-bold uppercase leading-none text-white">{{info.obhodnoi_status}}</span>
+                        </td>
+                        {% endif %}
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{# <td
+    class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40  shadow-transparent">
+    <span
+        class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block  text-center align-baseline font-bold uppercase leading-none text-white">Offline</span>
+</td> #}
+
+{% block js %}
+<script src="/js/jurnal.js"></script>
+{% endblock %}

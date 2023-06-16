@@ -1,0 +1,16 @@
+{% extends "pages/base.twig" %}
+{% block title %}Анкетирование - Студент{% endblock %}
+{% block css %} {% endblock %}
+{% block current %} Анкетирование {% endblock %}
+{% block current_title %} Анкетирование {% endblock %}
+{% block jurnal %}
+<div class="relative flex flex-col flex-auto min-w-0 p-4 mx-2 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
+    <h3 class="text-lg"> Анкетирование является анонимным и никак не повлияет на ваши оценки и обучение</h3>
+    <ul class="spravochnik-list">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDSUb8Tz3goeNsq1C_rln5Z1KfAQ6TPMUba2w2vUCT-bvI1g/viewform"><li class="text-black border-slate-200 text-sm text-sm cursor-pointer border-2 p-3 rounded-2xl mb-2 ">Анкетирование студентов по вопросам противодействия коррупции</li></a>
+
+    </ul>
+</div>
+{% endblock %}
+
+{% block js %}<script src="/js/jurnal.js"></script>{% endblock %}
